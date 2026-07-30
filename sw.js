@@ -2,7 +2,7 @@
    Zweck: Die App vollständig offline verfügbar halten.
    Bei einer neuen Fassung der App die Versionsnummer erhöhen. */
 
-const VERSION = 'wipo-2026-27-v2';
+const VERSION = 'wipo-2026-27-v3';
 
 const ASSETS = [
   './',
