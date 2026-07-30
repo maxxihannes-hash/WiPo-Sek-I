@@ -243,6 +243,44 @@ table.fp-raster .c-mat{width:16%;color:var(--muted)}
 .fp-actions .btn-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
 .fp-actions .btn-primary:hover{background:var(--blue-d);color:#fff}
 
+/* ===== Feinplanung bearbeiten ===== */
+.fp-editnote{background:#FFF6E8;border-left:4px solid #E0A458;padding:11px 16px;font-size:12.5px;color:#6E4B18}
+.fp-editnote b{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.ed-field{margin-bottom:16px}
+.ed-lab{display:flex;align-items:baseline;gap:8px;font-size:11px;text-transform:uppercase;
+  letter-spacing:.5px;color:var(--muted);font-weight:700;margin-bottom:5px}
+.ed-field input[type=text],.ed-field textarea{width:100%;font:inherit;font-size:13.5px;padding:9px 11px;
+  border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--text);box-sizing:border-box}
+.ed-field textarea{resize:vertical;line-height:1.45}
+.ed-field input:focus,.ed-field textarea:focus,.ed-row input:focus,.ed-row textarea:focus{
+  outline:2px solid var(--blue-l);outline-offset:-1px}
+.ed-orig{margin-left:auto;font:inherit;font-size:11px;text-transform:none;letter-spacing:0;font-weight:400;
+  background:none;border:0;color:var(--blue-l);text-decoration:underline;cursor:pointer;padding:0}
+.ed-orig:hover{color:var(--blue-d)}
+.ed-chg{color:var(--accent)}
+.ed-row{border:1px solid var(--line);border-radius:9px;padding:12px 14px;margin-bottom:10px;background:#FAFBFD}
+.ed-row-top{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.ed-row-nr{font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.5px}
+.ed-row-btns{margin-left:auto;display:flex;gap:5px}
+.ed-mini{font:inherit;font-size:12.5px;line-height:1;padding:6px 9px;border:1px solid var(--line);
+  background:#fff;border-radius:6px;cursor:pointer;color:var(--muted)}
+.ed-mini:hover{background:#EEF2F7;color:var(--text)}
+.ed-mini.del:hover{background:#FBEDE8;color:#8C2C16;border-color:#DFA893}
+.ed-mini[disabled]{opacity:.35;cursor:default}
+.ed-grid{display:grid;grid-template-columns:1.2fr 78px 1fr 1fr;gap:8px;margin-bottom:9px}
+.ed-grid input{width:100%;font:inherit;font-size:13px;padding:7px 9px;border:1px solid var(--line);
+  border-radius:6px;box-sizing:border-box;background:#fff}
+.ed-cap{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin-bottom:3px}
+.ed-row textarea{width:100%;font:inherit;font-size:13px;padding:8px 10px;border:1px solid var(--line);
+  border-radius:6px;resize:vertical;box-sizing:border-box;margin-bottom:9px;background:#fff;line-height:1.45}
+.ed-mat{display:flex;gap:8px;margin-bottom:8px;align-items:center}
+.ed-mat input{flex:1 1 140px;min-width:0;font:inherit;font-size:13px;padding:8px 10px;
+  border:1px solid var(--line);border-radius:6px;background:#fff}
+.ed-sect{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:22px 0 9px;font-weight:700}
+.ed-sect:first-child{margin-top:0}
+.fp-changed{background:#FFF1DC;color:#96560E;border:1px solid #E9D3B0;border-radius:5px;
+  padding:2px 7px;font-size:11px;font-weight:700;display:inline-block;margin-left:8px;vertical-align:middle}
+
 /* ===== „Als Nächstes"-Karte ===== */
 .next-card{background:linear-gradient(135deg,#1F4E79,#2E6BA3);color:#fff;border-radius:12px;
   padding:18px 22px;margin-bottom:18px;box-shadow:0 4px 16px rgba(31,78,121,.18)}
@@ -393,6 +431,7 @@ table.fp-raster .c-mat{width:16%;color:var(--muted)}
 .mk{font-size:12px;line-height:1;padding:3px 5px;border-radius:4px}
 .mk-note{background:#FFF1DC;color:#96560E}
 .mk-mat{background:#E7F0FA;color:var(--blue)}
+.mk-edit{background:#F3EAF7;color:#6B3E8C}
 @media(max-width:700px){ .note-grid{grid-template-columns:1fr} }
 
 /* Kurzmeldung nach Sichern/Laden */
@@ -574,6 +613,7 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
   body.print-modal .fp-actions,body.print-modal .fp-close{display:none!important}
   /* Eingabefelder im Ausdruck durch reine Textdarstellung ersetzen */
   body.print-modal .own-add,body.print-modal .own-tip,body.print-modal .mat-del{display:none!important}
+  body.print-modal .fp-changed,body.print-modal .ed-chg{display:none!important}
   body.print-modal .own-box{background:#fff;border:1px solid #ccc}
   body.print-modal .note-cell textarea{border:1px solid #ccc;background:#fff;min-height:60px;
     -webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -658,7 +698,8 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
   <div class="hint" id="topHint">
     <strong>So nutzen Sie diese Seite:</strong> Einheit anklicken zum Aufklappen · bei einer Stunde auf <em>Feinplanung</em> klicken für das ausgearbeitete Stundenraster mit Arbeitsaufträgen –
     dort auch als PDF druckbar oder als Textdatei speicherbar · Stundenthemen abhaken, um den Verlauf mitzuverfolgen (wird lokal im Browser gespeichert) ·
-    Suchfeld durchsucht alle vier Halbjahre gleichzeitig · <em>Schwerpunkt</em>-Markierungen zeigen die im schulinternen Fachcurriculum festgelegten Vertiefungen.
+    Suchfeld durchsucht alle vier Halbjahre gleichzeitig · <em>Schwerpunkt</em>-Markierungen zeigen die im schulinternen Fachcurriculum festgelegten Vertiefungen ·
+    jede Feinplanung lässt sich über <em>Bearbeiten</em> an die eigene Lerngruppe anpassen – geänderte Stunden sind mit ◈ gekennzeichnet.
   </div>
 
   
@@ -1872,8 +1913,12 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     <div class="fp-body" id="fpBody"></div>
     <div class="fp-actions">
       <button class="btn btn-primary" id="fpPrint">Als PDF drucken</button>
+      <button class="btn" id="fpEdit">Bearbeiten</button>
       <button class="btn" id="fpDownload">Als Textdatei (.md) speichern</button>
       <button class="btn" id="fpCloseBtn">Schließen</button>
+      <button class="btn btn-primary" id="fpSave" hidden>Änderungen speichern</button>
+      <button class="btn" id="fpCancel" hidden>Verwerfen</button>
+      <button class="btn btn-danger" id="fpRevert" hidden>Ganz auf Original zurücksetzen</button>
     </div>
   </div>
 </div>
@@ -1889,7 +1934,11 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
   // ============ Datenhaltung ============
   // D = { version, classes:[{id,name,jahrgang}], activeId,
   //       progress:{classId:{lessonKey:1}}, notesGeneral:{lessonKey:text},
-  //       notesClass:{classId:{lessonKey:text}}, materials:{lessonKey:[{id,title,url}]} }
+  //       notesClass:{classId:{lessonKey:text}}, materials:{lessonKey:[{id,title,url}]},
+  //       edits:{lessonKey:{frage?,ziel?,kompetenz?,ha?,hinweis?,raster?,material?,stand}} }
+  // In edits stehen ausschließlich die tatsächlich geänderten Felder. Alles Übrige wird
+  // weiterhin aus der mitgelieferten Planung genommen – Aktualisierungen der App kommen
+  // damit bei unveränderten Feldern an, veränderte bleiben erhalten.
   var STORE='wipo-2026-27-data';
   var OLDSTORE='wipo-2026-27-progress';
   var HJ_OF={k9_1:9,k9_2:9,k10_1:10,k10_2:10};
@@ -1901,7 +1950,7 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     return {version:3, jahre:JSON.parse(JSON.stringify(FPDATA.sj||[])),
             aktivesJahr:(FPDATA.sj&&FPDATA.sj[0]?FPDATA.sj[0].id:null),
             classes:[],activeId:null,progress:{},
-            notesGeneral:{},notesClass:{},materials:{}};
+            notesGeneral:{},notesClass:{},materials:{},edits:{}};
   }
   function uid(){ return 'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
 
@@ -1911,7 +1960,7 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     else if(D.version===2){ D=aufV3(D); }
     else if(D.version!==3){ D=fresh(); }
 
-    ['progress','notesGeneral','notesClass','materials'].forEach(function(k){ if(!D[k]) D[k]={}; });
+    ['progress','notesGeneral','notesClass','materials','edits'].forEach(function(k){ if(!D[k]) D[k]={}; });
     if(!Array.isArray(D.classes)) D.classes=[];
     // Schuljahre absichern und fehlende Vorlagen nachtragen
     if(!Array.isArray(D.jahre) || !D.jahre.length) D.jahre=JSON.parse(JSON.stringify(FPDATA.sj||[]));
@@ -1955,6 +2004,7 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     neu.notesGeneral=alt.notesGeneral||{};
     neu.notesClass=alt.notesClass||{};
     neu.materials=alt.materials||{};
+    neu.edits=alt.edits||{};
     neu.lastBackup=alt.lastBackup; neu.remindSnooze=alt.remindSnooze;
     var ziel=(FPDATA.sj&&FPDATA.sj[0]?FPDATA.sj[0].id:null);
     neu.aktivesJahr=ziel;
@@ -2223,7 +2273,7 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
       return;
     }
 
-    var m=FPDATA.meta[next]||{}, d=FPDATA.fp[next]||{};
+    var m=FPDATA.meta[next]||{}, d=fpData(next)||{};
 
     // Termin und Planabgleich
     var terminZeile='', statusZeile='';
@@ -2319,10 +2369,12 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
       var k=b.dataset.fp;
       var hasNote = !!(D.notesGeneral[k]) || !!classNote(k);
       var hasMat  = !!(D.materials[k] && D.materials[k].length);
+      var hasEdit = istBearbeitet(k);
       var m=li.querySelector('.lesson-marks');
       if(!m){ m=document.createElement('span'); m.className='lesson-marks'; li.insertBefore(m,b); }
       m.innerHTML = (hasNote?'<span class="mk mk-note" title="Notiz vorhanden">✎</span>':'')
-                  + (hasMat ?'<span class="mk mk-mat" title="Eigenes Material verknüpft">▤</span>':'');
+                  + (hasMat ?'<span class="mk mk-mat" title="Eigenes Material verknüpft">▤</span>':'')
+                  + (hasEdit?'<span class="mk mk-edit" title="Feinplanung von Ihnen angepasst">◈</span>':'');
     });
   }
 
@@ -2340,18 +2392,78 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
 
   function esc(s){ return String(s==null?'':s)
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  // Für Attributwerte: die Texte enthalten Anführungszeichen (z. B. „… Die WG"),
+  // die den Attributwert sonst vorzeitig beenden würden.
+  function escA(s){ return esc(s).replace(/"/g,'&quot;'); }
+
+  // ===== Eigene Fassung einer Feinplanung =====
+  // Gespeichert wird feldweise. Was nicht überschrieben ist, kommt aus der Planung der App.
+  var FPFELDER=['frage','ziel','kompetenz','ha','hinweis','raster','material'];
+  var FPFELDNAME={frage:'Problemfrage',ziel:'Stundenziel',kompetenz:'Kompetenzschwerpunkt',
+                  ha:'Hausaufgabe',hinweis:'Hinweis für die Lehrkraft',
+                  raster:'Stundenverlauf',material:'Materialvorschläge'};
+
+  function fpEdits(key){ return (D.edits||{})[key]||null; }
+  function feldGeaendert(key,f){ var o=fpEdits(key); return !!(o && o[f]!==undefined); }
+  function istBearbeitet(key){
+    var o=fpEdits(key); if(!o) return false;
+    for(var i=0;i<FPFELDER.length;i++) if(o[FPFELDER[i]]!==undefined) return true;
+    return false;
+  }
+  // Wirksame Fassung: Originaldaten, überlagert von den eigenen Änderungen
+  function fpData(key){
+    var b=FPDATA.fp[key]; if(!b) return null;
+    var o=fpEdits(key); if(!o) return b;
+    var out={}; for(var k in b) out[k]=b[k];
+    FPFELDER.forEach(function(f){ if(o[f]!==undefined) out[f]=o[f]; });
+    return out;
+  }
+  function klon(x){ return JSON.parse(JSON.stringify(x==null?null:x)); }
+  function gleich(a,b){ return JSON.stringify(a==null?'':a)===JSON.stringify(b==null?'':b); }
+
+  // Einheitliche Form, damit „unverändert" zuverlässig erkannt wird
+  function normR(a){ return (a||[]).map(function(x){
+    return {p:x.p||'',z:String(x.z==null?'':x.z),a:x.a||'',auftrag:x.auftrag||'',s:x.s||'',m:x.m||''}; }); }
+  function normM(a){ return (a||[]).map(function(x){
+    var e={t:x.t||''}; if(x.u) e.u=x.u; return e; }); }
+  function normFeld(f,v){
+    if(f==='raster') return normR(v);
+    if(f==='material') return normM(v);
+    return String(v==null?'':v).trim();
+  }
+
+  function setzeFeld(key,f,wert){
+    var b=FPDATA.fp[key]; if(!b) return;
+    if(!D.edits) D.edits={};
+    wert=normFeld(f,wert);
+    if(gleich(wert,normFeld(f,b[f]))){                         // wieder wie im Original
+      if(D.edits[key]) delete D.edits[key][f];
+    }else{
+      if(!D.edits[key]) D.edits[key]={};
+      D.edits[key][f]=wert;
+    }
+    if(D.edits[key]){
+      var leer=true;
+      FPFELDER.forEach(function(x){ if(D.edits[key][x]!==undefined) leer=false; });
+      if(leer) delete D.edits[key]; else D.edits[key].stand=new Date().toISOString();
+    }
+  }
 
   function renderFP(key){
-    var d=FPDATA.fp[key], m=FPDATA.meta[key];
+    var d=fpData(key), m=FPDATA.meta[key];
     if(!d||!m) return;
+    if(currentFP!==key){ fpEditMode=false; EW=null; }
     currentFP=key;
-    document.getElementById('fpCrumb').textContent=m.hj+' · '+m.pos;
+    if(fpEditMode){ renderFPEdit(key); return; }
+    setFPButtons(false,key);
+    document.getElementById('fpCrumb').textContent=m.hj+' · '+m.pos+(istBearbeitet(key)?' · eigene Fassung':'');
     document.getElementById('fpTitle').textContent=m.stunde;
     document.getElementById('fpUnit').textContent=m.einheit;
 
-    var meta='<div><b>Problemfrage der Stunde</b><span>'+esc(d.frage)+'</span></div>'+
-             '<div><b>Stundenziel</b><span>'+esc(d.ziel)+'</span></div>'+
-             '<div><b>Kompetenzschwerpunkt</b><span>'+esc(d.kompetenz)+'</span></div>';
+    var chg=function(f){ return feldGeaendert(key,f)?' <span class="ed-chg" title="von Ihnen geändert">geändert</span>':''; };
+    var meta='<div><b>Problemfrage der Stunde'+chg('frage')+'</b><span>'+esc(d.frage)+'</span></div>'+
+             '<div><b>Stundenziel'+chg('ziel')+'</b><span>'+esc(d.ziel)+'</span></div>'+
+             '<div><b>Kompetenzschwerpunkt'+chg('kompetenz')+'</b><span>'+esc(d.kompetenz)+'</span></div>';
     document.getElementById('fpMeta').innerHTML=meta;
 
     var istExkT = d.typ==='exkursion';
@@ -2360,7 +2472,7 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
         '<td class="c-phase" data-l="'+(istExkT?'Programmteil':'Phase')+'">'+esc(r.p)+'</td>'+
         '<td class="c-zeit" data-l="Dauer">'+esc(r.z)+'′</td>'+
         '<td data-l="Ablauf">'+esc(r.a)+
-          (r.auftrag?'<span class="auftrag"><button class="cp" data-cp="'+esc(r.auftrag)+'">kopieren</button><b>Arbeitsauftrag</b>'+esc(r.auftrag)+'</span>':'')+
+          (r.auftrag?'<span class="auftrag"><button class="cp" data-cp="'+escA(r.auftrag)+'">kopieren</button><b>Arbeitsauftrag</b>'+esc(r.auftrag)+'</span>':'')+
         '</td>'+
         '<td class="c-soz" data-l="'+(istExkT?'Form':'Sozialform')+'">'+esc(r.s)+'</td>'+
         '<td class="c-mat" data-l="Material">'+esc(r.m)+'</td>'+
@@ -2368,16 +2480,17 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     }).join('');
 
     var mats=(d.material||[]).map(function(x){
-      return '<li>'+(x.u?'<a href="'+esc(x.u)+'" target="_blank" rel="noopener">'+esc(x.t)+'</a>':esc(x.t))+'</li>';
+      return '<li>'+(x.u?'<a href="'+escA(x.u)+'" target="_blank" rel="noopener">'+esc(x.t)+'</a>':esc(x.t))+'</li>';
     }).join('');
 
     var istExk = d.typ==='exkursion';
-    var html='<h3>'+(istExk?'Tagesablauf':'Stundenverlauf')+'</h3>'+
+    var marke=function(f){ return feldGeaendert(key,f)?'<span class="fp-changed">geändert</span>':''; };
+    var html='<h3>'+(istExk?'Tagesablauf':'Stundenverlauf')+marke('raster')+'</h3>'+
       (istExk?'<p class="fp-exk">Ganztägige Exkursion – die Zeitangaben sind Richtwerte. Das Programm wird vom Landtag individuell abgestimmt.</p>':'')+
       '<table class="fp-raster"><thead><tr><th>'+(istExk?'Programmteil':'Phase')+'</th><th>Min.</th><th>Ablauf und Arbeitsauftrag</th><th>'+(istExk?'Form':'Sozialform')+'</th><th>Material</th></tr></thead><tbody>'+rows+'</tbody></table>'+
-      '<h3>Materialvorschläge</h3><ul class="fp-list">'+(mats||'<li>–</li>')+'</ul>';
-    if(d.ha) html+='<h3>Hausaufgabe</h3><div class="fp-ha">'+esc(d.ha)+'</div>';
-    if(d.hinweis) html+='<h3>Hinweis für die Lehrkraft</h3><div class="fp-note">'+esc(d.hinweis)+'</div>';
+      '<h3>Materialvorschläge'+marke('material')+'</h3><ul class="fp-list">'+(mats||'<li>–</li>')+'</ul>';
+    if(d.ha) html+='<h3>Hausaufgabe'+marke('ha')+'</h3><div class="fp-ha">'+esc(d.ha)+'</div>';
+    if(d.hinweis) html+='<h3>Hinweis für die Lehrkraft'+marke('hinweis')+'</h3><div class="fp-note">'+esc(d.hinweis)+'</div>';
 
     // ---- Eigene Materialverweise ----
     var mats=D.materials[key]||[];
@@ -2385,8 +2498,8 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
       '<div class="own-box">'+
       '<ul class="own-mats" id="ownMats">'+
         (mats.length ? mats.map(function(m){
-           return '<li><a href="'+esc(m.url)+'" target="_blank" rel="noopener">'+esc(m.title)+'</a>'+
-                  '<button class="mat-del" data-mid="'+esc(m.id)+'" title="Entfernen">&times;</button></li>';
+           return '<li><a href="'+escA(m.url)+'" target="_blank" rel="noopener">'+esc(m.title)+'</a>'+
+                  '<button class="mat-del" data-mid="'+escA(m.id)+'" title="Entfernen">&times;</button></li>';
          }).join('')
         : '<li class="muted">Noch nichts verknüpft.</li>')+
       '</ul>'+
@@ -2423,10 +2536,228 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
   }
 
   function closeFP(){
+    if(fpEditMode && fpSchmutzig()){
+      if(!confirm('Es gibt ungespeicherte Änderungen an dieser Feinplanung.\n\nOK = verwerfen und schließen\nAbbrechen = zurück zur Bearbeitung')) return;
+    }
+    fpEditMode=false;
     document.getElementById('fpModal').classList.remove('open');
     document.body.style.overflow='';
     currentFP=null;
     markNoteBadges();
+  }
+
+  // ================= Feinplanung bearbeiten =================
+  var fpEditMode=false;
+
+  function setFPButtons(edit,key){
+    var an=function(id,zeig){ var b=document.getElementById(id); if(b) b.hidden=!zeig; };
+    an('fpPrint',!edit); an('fpDownload',!edit); an('fpCloseBtn',!edit); an('fpEdit',!edit);
+    an('fpSave',edit); an('fpCancel',edit);
+    an('fpRevert', edit && istBearbeitet(key));
+  }
+
+  function ta(id,wert,zeilen,platz){
+    return '<textarea id="'+id+'" rows="'+zeilen+'" placeholder="'+escA(platz||'')+'">'+esc(wert||'')+'</textarea>';
+  }
+  function feldBlock(key,f,titel,wert,zeilen,platz){
+    var org=feldGeaendert(key,f)
+      ? '<button type="button" class="ed-orig" data-orig="'+f+'">Originaltext einsetzen</button>' : '';
+    return '<div class="ed-field"><div class="ed-lab"><span>'+esc(titel)+'</span>'+org+'</div>'+
+           ta('ed_'+f,wert,zeilen,platz)+'</div>';
+  }
+
+  function rasterZeileHTML(r,i,exk,anz){
+    return '<div class="ed-row" data-i="'+i+'">'+
+      '<div class="ed-row-top"><span class="ed-row-nr">'+(exk?'Programmteil ':'Phase ')+(i+1)+'</span>'+
+        '<span class="ed-row-btns">'+
+          '<button type="button" class="ed-mini" data-up="'+i+'" title="Nach oben"'+(i===0?' disabled':'')+'>↑</button>'+
+          '<button type="button" class="ed-mini" data-down="'+i+'" title="Nach unten"'+(i===anz-1?' disabled':'')+'>↓</button>'+
+          '<button type="button" class="ed-mini del" data-rm="'+i+'" title="Zeile löschen">Löschen</button>'+
+        '</span></div>'+
+      '<div class="ed-grid">'+
+        '<div><span class="ed-cap">'+(exk?'Programmteil':'Phase')+'</span><input type="text" data-r="p" value="'+escA(r.p)+'"></div>'+
+        '<div><span class="ed-cap">Minuten</span><input type="text" inputmode="numeric" data-r="z" value="'+escA(r.z)+'"></div>'+
+        '<div><span class="ed-cap">'+(exk?'Form':'Sozialform')+'</span><input type="text" data-r="s" value="'+escA(r.s)+'" placeholder="UG, GA, EA, PA …"></div>'+
+        '<div><span class="ed-cap">Material</span><input type="text" data-r="m" value="'+escA(r.m)+'" placeholder="– wenn keines"></div>'+
+      '</div>'+
+      '<span class="ed-cap">Ablauf</span>'+
+      '<textarea data-r="a" rows="2" placeholder="Was in dieser Phase geschieht …">'+esc(r.a)+'</textarea>'+
+      '<span class="ed-cap">Arbeitsauftrag an die Lerngruppe (kann leer bleiben)</span>'+
+      '<textarea data-r="auftrag" rows="2" placeholder="Wortlaut, wie er an die Klasse geht – mit Operator …">'+esc(r.auftrag||'')+'</textarea>'+
+    '</div>';
+  }
+
+  function matZeileHTML(x,i){
+    return '<div class="ed-mat" data-mi="'+i+'">'+
+      '<input type="text" data-mf="t" value="'+escA(x.t||'')+'" placeholder="Bezeichnung des Materials">'+
+      '<input type="text" data-mf="u" value="'+escA(x.u||'')+'" placeholder="Link (kann leer bleiben)">'+
+      '<button type="button" class="ed-mini del" data-mrm="'+i+'" title="Eintrag löschen">Löschen</button>'+
+    '</div>';
+  }
+
+  // Arbeitsstand während der Bearbeitung – erst beim Speichern übernommen
+  var EW=null;
+
+  function renderFPEdit(key){
+    var d=fpData(key), m=FPDATA.meta[key];
+    if(!d||!m) return;
+    if(!EW || EW.key!==key){
+      EW={key:key, raster:klon(d.raster||[]), material:klon(d.material||[])};
+    }
+    var exk = d.typ==='exkursion';
+    setFPButtons(true,key);
+    document.getElementById('fpCrumb').textContent=m.hj+' · '+m.pos+' · Bearbeiten';
+    document.getElementById('fpTitle').textContent=m.stunde;
+    document.getElementById('fpUnit').textContent=m.einheit;
+    document.getElementById('fpMeta').innerHTML=
+      '<div class="fp-editnote" style="grid-column:1/-1"><b>Eigene Fassung</b>'+
+      'Geändert wird nur, was Sie hier anfassen. Alles Übrige bleibt an die mitgelieferte Planung gekoppelt '+
+      'und wird bei einer Aktualisierung der App mit aktualisiert. Ihre Änderungen überstehen jede Aktualisierung.</div>';
+
+    var h='<div class="ed-sect">Kern der Stunde</div>'+
+      feldBlock(key,'frage','Problemfrage der Stunde',d.frage,2,'Die eine Frage, an der die Stunde hängt …')+
+      feldBlock(key,'ziel','Stundenziel',d.ziel,3,'Die SuS können …')+
+      feldBlock(key,'kompetenz','Kompetenzschwerpunkt',d.kompetenz,2,'z. B. Sachurteilskompetenz · Erschließungskompetenz')+
+      '<div class="ed-sect">'+(exk?'Tagesablauf':'Stundenverlauf')+
+        (feldGeaendert(key,'raster')?'<button type="button" class="ed-orig" data-orig="raster">Originalverlauf einsetzen</button>':'')+
+      '</div>'+
+      '<div id="edRaster">'+EW.raster.map(function(r,i){ return rasterZeileHTML(r,i,exk,EW.raster.length); }).join('')+'</div>'+
+      '<button type="button" class="btn btn-mini" id="edAddRow">'+(exk?'Programmteil':'Phase')+' hinzufügen</button>'+
+      '<div class="ed-sect">Materialvorschläge'+
+        (feldGeaendert(key,'material')?'<button type="button" class="ed-orig" data-orig="material">Originalliste einsetzen</button>':'')+
+      '</div>'+
+      '<div id="edMats">'+(EW.material.length?EW.material.map(matZeileHTML).join('')
+        :'<p class="muted" style="font-size:13px">Noch kein Eintrag.</p>')+'</div>'+
+      '<button type="button" class="btn btn-mini" id="edAddMat">Eintrag hinzufügen</button>'+
+      '<div class="ed-sect">Abschluss</div>'+
+      feldBlock(key,'ha','Hausaufgabe',d.ha,2,'Kann leer bleiben.')+
+      feldBlock(key,'hinweis','Hinweis für die Lehrkraft',d.hinweis,3,'Organisatorisches, Stolpersteine, Alternativen …');
+
+    document.getElementById('fpBody').innerHTML=h;
+    verdrahteEdit(key,exk);
+    document.getElementById('fpModal').classList.add('open');
+    document.body.style.overflow='hidden';
+    document.getElementById('fpBody').scrollTop=0;
+  }
+
+  // Zeilen des Verlaufs aus den Eingabefeldern in den Arbeitsstand zurückschreiben
+  function leseRaster(){
+    var out=[], box=document.getElementById('edRaster');
+    if(!box) return out;
+    box.querySelectorAll('.ed-row').forEach(function(el){
+      var g=function(sel){ var x=el.querySelector('[data-r="'+sel+'"]'); return x?x.value.trim():''; };
+      out.push({p:g('p'), z:g('z'), a:g('a'), auftrag:g('auftrag'), s:g('s'), m:g('m')});
+    });
+    return out;
+  }
+  function leseMats(){
+    var out=[], box=document.getElementById('edMats');
+    if(!box) return out;
+    box.querySelectorAll('.ed-mat').forEach(function(el){
+      var t=el.querySelector('[data-mf="t"]').value.trim();
+      var u=el.querySelector('[data-mf="u"]').value.trim();
+      if(!t && !u) return;
+      var e={t:t||u};
+      if(u){ if(!/^https?:\/\//i.test(u)) u='https://'+u; e.u=u; }
+      out.push(e);
+    });
+    return out;
+  }
+  function synchronisiereEW(){
+    if(!EW) return;
+    EW.raster=leseRaster();
+    EW.material=leseMats();
+  }
+
+  function verdrahteEdit(key,exk){
+    var box=document.getElementById('edRaster');
+
+    document.getElementById('edAddRow').addEventListener('click',function(){
+      synchronisiereEW();
+      EW.raster.push({p:'',z:'',a:'',auftrag:'',s:'',m:''});
+      renderFPEdit(key);
+      var rows=document.querySelectorAll('#edRaster .ed-row');
+      var last=rows[rows.length-1];
+      if(last){ last.scrollIntoView({block:'center'}); last.querySelector('input').focus(); }
+    });
+
+    document.getElementById('edAddMat').addEventListener('click',function(){
+      synchronisiereEW();
+      EW.material.push({t:'',u:''});
+      renderFPEdit(key);
+      var ms=document.querySelectorAll('#edMats .ed-mat');
+      var last=ms[ms.length-1];
+      if(last) last.querySelector('input').focus();
+    });
+
+    box.addEventListener('click',function(e){
+      var b=e.target.closest('button'); if(!b) return;
+      synchronisiereEW();
+      var i;
+      if(b.dataset.rm!==undefined){
+        i=+b.dataset.rm;
+        if(EW.raster.length<=1){ toast('Der Verlauf braucht mindestens eine Zeile.'); return; }
+        EW.raster.splice(i,1);
+      }else if(b.dataset.up!==undefined){
+        i=+b.dataset.up; if(i<1) return;
+        var t=EW.raster[i-1]; EW.raster[i-1]=EW.raster[i]; EW.raster[i]=t;
+      }else if(b.dataset.down!==undefined){
+        i=+b.dataset.down; if(i>=EW.raster.length-1) return;
+        var t2=EW.raster[i+1]; EW.raster[i+1]=EW.raster[i]; EW.raster[i]=t2;
+      }else return;
+      renderFPEdit(key);
+    });
+
+    document.getElementById('edMats').addEventListener('click',function(e){
+      var b=e.target.closest('[data-mrm]'); if(!b) return;
+      synchronisiereEW();
+      EW.material.splice(+b.dataset.mrm,1);
+      renderFPEdit(key);
+    });
+  }
+
+  // „Originaltext einsetzen" – einmalig verdrahtet, da fpBody erhalten bleibt
+  document.getElementById('fpBody').addEventListener('click',function(e){
+    if(!fpEditMode || !currentFP) return;
+    var b=e.target.closest('.ed-orig'); if(!b) return;
+    var key=currentFP, f=b.dataset.orig, org=FPDATA.fp[key];
+    if(!confirm('Für „'+FPFELDNAME[f]+'" wieder die mitgelieferte Fassung einsetzen?\n\nIhre Änderung an diesem Feld geht dabei verloren.')) return;
+    if(f==='raster'){ synchronisiereEW(); EW.raster=klon(org.raster||[]); }
+    else if(f==='material'){ synchronisiereEW(); EW.material=klon(org.material||[]); }
+    else { var el=document.getElementById('ed_'+f); if(el){ el.value=org[f]||''; el.focus(); } return; }
+    renderFPEdit(key);
+  });
+
+  // Gibt es gegenüber dem gespeicherten Stand offene Änderungen?
+  function fpSchmutzig(){
+    if(!fpEditMode || !EW || !currentFP) return false;
+    var d=fpData(currentFP); if(!d) return false;
+    if(!document.getElementById('edRaster')) return false;
+    if(!gleich(normR(leseRaster()),normR(d.raster))) return true;
+    if(!gleich(normM(leseMats()),normM(d.material))) return true;
+    var offen=false;
+    ['frage','ziel','kompetenz','ha','hinweis'].forEach(function(f){
+      var el=document.getElementById('ed_'+f); if(!el) return;
+      if(el.value.trim()!==String(d[f]==null?'':d[f]).trim()) offen=true;
+    });
+    return offen;
+  }
+
+  function speichereFP(key){
+    var r=leseRaster().filter(function(x){
+      return x.p||x.z||x.a||x.auftrag||x.s||x.m;                 // ganz leere Zeilen verwerfen
+    });
+    if(!r.length){ toast('Der Verlauf braucht mindestens eine ausgefüllte Zeile.'); return false; }
+    ['frage','ziel','kompetenz','ha','hinweis'].forEach(function(f){
+      var el=document.getElementById('ed_'+f); if(!el) return;
+      setzeFeld(key,f,el.value);
+    });
+    setzeFeld(key,'raster',r);
+    setzeFeld(key,'material',leseMats());
+    save();
+    EW=null;
+    buildSearchIndex();
+    return true;
   }
 
   // ---- Arbeitsauftrag in die Zwischenablage ----
@@ -2652,7 +2983,7 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
       var letzte=null; for(var i=order.length-1;i>=0;i--){ if(SP.map[order[i]]){ letzte=order[i]; break; } }
       if(erste) eintraege.push({d:SP.map[erste].von,t:'Erste Stunde '+c.name,k:'klasse',n:FPDATA.meta[erste].stunde});
       if(letzte) eintraege.push({d:SP.map[letzte].bis||SP.map[letzte].von,t:'Letzte Stunde '+c.name,k:'klasse',n:FPDATA.meta[letzte].stunde});
-      var exk=order.find(function(k){ return FPDATA.fp[k]&&FPDATA.fp[k].typ==='exkursion'&&SP.map[k]; });
+      var exk=order.find(function(k){ return FPDATA.fp[k]&&FPDATA.fp[k].typ==='exkursion'&&SP.map[k]; });   // Typ bleibt an der Planung
       if(exk) eintraege.push({d:SP.map[exk].von,t:'Exkursion '+c.name,k:'klasse',n:FPDATA.meta[exk].stunde});
       (c.termin.ausfall||[]).forEach(function(a){
         eintraege.push({d:a,t:'Ausfall '+c.name,k:'feier',n:'als Ausfall eingetragen'});
@@ -2703,7 +3034,7 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
             (j.ferien||[]).map(function(f,i){
               return '<div class="yr-f"><input type="date" data-yfer="'+j.id+'" data-fi="'+i+'" data-fp="0" value="'+f[0]+'">'+
                 '<span>bis</span><input type="date" data-yfer="'+j.id+'" data-fi="'+i+'" data-fp="1" value="'+f[1]+'">'+
-                '<input type="text" data-yfer="'+j.id+'" data-fi="'+i+'" data-fp="2" value="'+esc(f[2]||'')+'" placeholder="Bezeichnung">'+
+                '<input type="text" data-yfer="'+j.id+'" data-fi="'+i+'" data-fp="2" value="'+escA(f[2]||'')+'" placeholder="Bezeichnung">'+
                 '<button class="mat-del" data-yfdel="'+j.id+'" data-fi="'+i+'" title="Entfernen">&times;</button></div>';
             }).join('')+
           '</div>'+
@@ -2857,7 +3188,7 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
   });
 
   function fpMarkdown(key){
-    var d=FPDATA.fp[key], m=FPDATA.meta[key];
+    var d=fpData(key), m=FPDATA.meta[key];
     var L=[];
     L.push('# Feinplanung – '+m.stunde);
     L.push('');
@@ -2901,6 +3232,12 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     L.push('---');
     var jj=aktJahr();
     L.push('Wirtschaft/Politik · Grobplanung Klasse 9 & 10'+(jj?(' · Schuljahr '+jj.name):''));
+    if(istBearbeitet(key)){
+      var ov=fpEdits(key), gf=[];
+      FPFELDER.forEach(function(f){ if(ov[f]!==undefined) gf.push(FPFELDNAME[f]); });
+      L.push('Eigene Fassung – angepasst: '+gf.join(', ')+
+             (ov.stand?(' (Stand '+String(ov.stand).slice(0,10)+')'):''));
+    }
     return L.join('\n');
   }
 
@@ -2936,6 +3273,43 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     a.download='Feinplanung_'+slug(m.stunde)+'.md';
     document.body.appendChild(a); a.click();
     setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },1000);
+  });
+
+  // ---- Bearbeiten der Feinplanung ----
+  document.getElementById('fpEdit').addEventListener('click',function(){
+    if(!currentFP) return;
+    fpEditMode=true; EW=null;
+    renderFPEdit(currentFP);
+  });
+  document.getElementById('fpCancel').addEventListener('click',function(){
+    if(!currentFP) return;
+    if(fpSchmutzig() && !confirm('Die noch nicht gespeicherten Änderungen verwerfen?')) return;
+    fpEditMode=false; EW=null;
+    renderFP(currentFP);
+    markNoteBadges();
+  });
+  document.getElementById('fpSave').addEventListener('click',function(){
+    if(!currentFP) return;
+    var key=currentFP;
+    if(!speichereFP(key)) return;
+    fpEditMode=false;
+    renderFP(key);
+    markNoteBadges();
+    renderNext();
+    toast(istBearbeitet(key) ? 'Ihre Fassung dieser Stunde ist gespeichert.'
+                             : 'Wieder identisch mit der mitgelieferten Fassung.');
+  });
+  document.getElementById('fpRevert').addEventListener('click',function(){
+    if(!currentFP) return;
+    var key=currentFP;
+    if(!confirm('Diese Feinplanung vollständig auf die mitgelieferte Fassung zurücksetzen?\n\nAlle Ihre Änderungen an dieser Stunde gehen verloren. Notizen und eigene Materialien bleiben erhalten.')) return;
+    if(D.edits) delete D.edits[key];
+    save(); buildSearchIndex();
+    fpEditMode=false; EW=null;
+    renderFP(key);
+    markNoteBadges();
+    renderNext();
+    toast('Originalfassung wiederhergestellt.');
   });
 
   // expand / collapse
@@ -2981,7 +3355,7 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     document.querySelectorAll('.unit').forEach(function(u){
       var parts=[u.dataset.search||''];
       u.querySelectorAll('.fp-btn').forEach(function(b){
-        var d=FPDATA.fp[b.dataset.fp]; if(!d) return;
+        var d=fpData(b.dataset.fp); if(!d) return;
         parts.push(d.frage,d.ziel,d.kompetenz,d.ha||'',d.hinweis||'');
         (d.raster||[]).forEach(function(r){ parts.push(r.p,r.a,r.auftrag||'',r.s||'',r.m||''); });
         (d.material||[]).forEach(function(m){ parts.push(m.t); });
@@ -3067,9 +3441,11 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     var notes=Object.keys(D.notesGeneral).length;
     Object.keys(D.notesClass).forEach(function(id){ notes+=Object.keys(D.notesClass[id]||{}).length; });
     var mats=0; Object.keys(D.materials).forEach(function(k){ mats+=(D.materials[k]||[]).length; });
-    var payload={ app:'WiPo-Unterrichtsplanung', version:2, schuljahr:'2026/27',
+    var bearb=Object.keys(D.edits||{}).filter(istBearbeitet).length;
+    var payload={ app:'WiPo-Unterrichtsplanung', version:3, schuljahr:'2026/27',
                   gesichert:new Date().toISOString(),
-                  uebersicht:{klassen:D.classes.length,haekchen:ticks,notizen:notes,materialien:mats},
+                  uebersicht:{klassen:D.classes.length,haekchen:ticks,notizen:notes,
+                              materialien:mats,bearbeiteteFeinplanungen:bearb},
                   daten:D };
     var blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
     var a=document.createElement('a');
@@ -3079,7 +3455,8 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },1000);
     D.lastBackup=new Date().toISOString(); delete D.remindSnooze; save();
     checkBackup();
-    toast('Gesichert: '+D.classes.length+' Klassen, '+ticks+' Häkchen, '+notes+' Notizen, '+mats+' Materialien.');
+    toast('Gesichert: '+D.classes.length+' Klassen, '+ticks+' Häkchen, '+notes+' Notizen, '+mats+' Materialien'+
+          (bearb?', '+bearb+' eigene Feinplanungen':'')+'.');
   });
 
   document.getElementById('backupNow').addEventListener('click',function(){
@@ -3125,9 +3502,12 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
       var nNotes=Object.keys(neu.notesGeneral||{}).length;
       Object.keys(neu.notesClass||{}).forEach(function(id){ nNotes+=Object.keys(neu.notesClass[id]||{}).length; });
       var nMats=0; Object.keys(neu.materials||{}).forEach(function(k){ nMats+=(neu.materials[k]||[]).length; });
+      var nEdits=Object.keys(neu.edits||{}).length;
 
-      var haveAny = D.classes.length || Object.keys(D.notesGeneral).length || Object.keys(D.materials).length;
+      var haveAny = D.classes.length || Object.keys(D.notesGeneral).length ||
+                    Object.keys(D.materials).length || Object.keys(D.edits||{}).length;
       var msg='Gefunden: '+(neu.classes||[]).length+' Klassen, '+nTicks+' Häkchen, '+nNotes+' Notizen, '+nMats+' Materialien'+
+              (nEdits?', '+nEdits+' eigene Feinplanungen':'')+
               (data.gesichert?' (gesichert am '+String(data.gesichert).slice(0,10)+')':'')+'.\n\n';
       msg+= haveAny ? 'OK = zu Ihrem bisherigen Stand hinzufügen\nAbbrechen = bisherigen Stand ersetzen'
                     : 'Jetzt übernehmen?';
@@ -3153,6 +3533,11 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
             if(!D.materials[k].some(function(x){ return x.url===m.url; })) D.materials[k].push(m);
           });
         });
+        // Eigene Feinplanungsfassungen: nur ergänzen, vorhandene nicht überschreiben
+        if(!D.edits) D.edits={};
+        Object.keys(neu.edits||{}).forEach(function(k){
+          if(!D.edits[k]) D.edits[k]=neu.edits[k];
+        });
         if(!D.activeId && D.classes.length) D.activeId=D.classes[0].id;
       }
       save(); load();
@@ -3170,6 +3555,7 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     n+=Object.keys(D.notesGeneral||{}).length;
     Object.keys(D.notesClass||{}).forEach(function(id){ n+=Object.keys(D.notesClass[id]||{}).length; });
     Object.keys(D.materials||{}).forEach(function(k){ n+=(D.materials[k]||[]).length; });
+    n+=Object.keys(D.edits||{}).length*2;      // eigene Feinplanungen wiegen schwerer
     return n;
   }
   function tageSeit(iso){
