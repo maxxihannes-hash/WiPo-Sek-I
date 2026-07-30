@@ -1,7 +1,7 @@
 {
-  "name": "Wirtschaft/Politik – Unterrichtsplanung 2026/27",
-  "short_name": "WiPo 26/27",
-  "description": "Grob- und Feinplanung Wirtschaft/Politik für die Klassen 9 und 10, Schuljahr 2026/27, Schleswig-Holstein.",
+  "name": "Wirtschaft/Politik – Unterrichtsplanung Klasse 9 und 10",
+  "short_name": "WiPo Planung",
+  "description": "Grob- und Feinplanung Wirtschaft/Politik für die Klassen 9 und 10, Schleswig-Holstein – schuljahresunabhängig.",
   "lang": "de",
   "dir": "ltr",
   "start_url": "./index.html",
@@ -10,7 +10,10 @@
   "orientation": "any",
   "background_color": "#F4F6F9",
   "theme_color": "#1F4E79",
-  "categories": ["education", "productivity"],
+  "categories": [
+    "education",
+    "productivity"
+  ],
   "icons": [
     {
       "src": "icons/icon-192.png",

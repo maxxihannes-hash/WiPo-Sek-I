@@ -1,8 +1,8 @@
-/* Service Worker – Wirtschaft/Politik Unterrichtsplanung 2026/27
+/* Service Worker – Wirtschaft/Politik Unterrichtsplanung
    Zweck: Die App vollständig offline verfügbar halten.
    Bei einer neuen Fassung der App die Versionsnummer erhöhen. */
 
-const VERSION = 'wipo-2026-27-v3';
+const VERSION = 'wipo-planung-v6';
 
 const ASSETS = [
   './',
