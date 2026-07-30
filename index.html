@@ -1882,6 +1882,10 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
 
 <script>
 (function(){
+  // Eingebettete Planungsdaten zuerst laden: die Datenhaltung greift beim Start darauf zu.
+  var FPDATA={fp:{},meta:{},order:{},slots:{},sj:[]};
+  try{ FPDATA=JSON.parse(document.getElementById('fp-data').textContent); }catch(e){}
+
   // ============ Datenhaltung ============
   // D = { version, classes:[{id,name,jahrgang}], activeId,
   //       progress:{classId:{lessonKey:1}}, notesGeneral:{lessonKey:text},
@@ -1926,6 +1930,7 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     var eigene=klassenDesJahres();
     if(D.activeId && !eigene.some(function(k){return k.id===D.activeId;})) D.activeId=null;
     if(!D.activeId && eigene.length) D.activeId=eigene[0].id;
+    save();   // Ausgangszustand bzw. übernommenen Stand sofort festschreiben
   }
 
   // Schuljahr, in dessen Zeitraum das heutige Datum fällt
@@ -2331,8 +2336,6 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
   });
 
   // ---------- Feinplanungen ----------
-  var FPDATA={fp:{},meta:{}};
-  try{ FPDATA=JSON.parse(document.getElementById('fp-data').textContent); }catch(e){}
   var currentFP=null;
 
   function esc(s){ return String(s==null?'':s)
