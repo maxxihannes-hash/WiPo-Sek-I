@@ -241,6 +241,63 @@ table.fp-raster .c-mat{width:16%;color:var(--muted)}
 .fp-actions .btn-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
 .fp-actions .btn-primary:hover{background:var(--blue-d);color:#fff}
 
+/* ===== Lerngruppen ===== */
+.classbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px;
+  padding-top:14px;border-top:1px solid rgba(255,255,255,.18)}
+.classbar label{font-size:11.5px;text-transform:uppercase;letter-spacing:.5px;opacity:.85}
+#classSel{font:inherit;font-size:14px;font-weight:600;padding:8px 12px;border-radius:7px;
+  border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.14);color:#fff;min-width:190px}
+#classSel option{color:#1F2933;background:#fff}
+#classSel:disabled{opacity:.65}
+.btn-light{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.28);color:#fff}
+.btn-light:hover{background:rgba(255,255,255,.28);color:#fff;border-color:rgba(255,255,255,.4)}
+.cls-hint{font-size:12.5px;opacity:.85}
+.cls-hint.warn{color:#FFD9A8;opacity:1;font-weight:600}
+.tab.off-year{opacity:.45}
+.tab.off-year.active{opacity:1}
+
+.cls-add{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:6px}
+.cls-add input[type=text]{flex:1 1 200px;min-width:0}
+.cls-add input,.cls-add select{font:inherit;font-size:14px;padding:10px 12px;
+  border:1px solid var(--line);border-radius:7px;background:#fff}
+.cls-row{display:flex;align-items:center;gap:9px;padding:11px 0;border-top:1px solid var(--line);flex-wrap:wrap}
+.cls-row:first-child{border-top:0}
+.cls-info{flex:1;min-width:150px}
+.cls-info strong{display:block;font-size:14.5px}
+.cls-info span{font-size:12.5px;color:var(--muted)}
+.btn-mini{padding:7px 11px;font-size:12.5px}
+.btn-danger{color:#A5341A;border-color:#EBC6BA}
+.btn-danger:hover{background:#FBEDE8;color:#8C2C16;border-color:#DFA893}
+
+/* ===== Notizen und eigene Materialien ===== */
+.own-box{background:#F7F9FC;border:1px solid var(--line);border-radius:9px;padding:14px 16px}
+.own-mats{margin-bottom:10px}
+.own-mats li{display:flex;align-items:center;gap:9px;padding:6px 0;font-size:13.5px;
+  border-bottom:1px solid #EEF1F5}
+.own-mats li:last-child{border-bottom:0}
+.own-mats a{flex:1;text-decoration:none;border-bottom:1px solid #BFD5EA;word-break:break-word}
+.own-mats a:hover{border-bottom-color:var(--blue-l)}
+.mat-del{flex:0 0 auto;width:26px;height:26px;border-radius:6px;border:1px solid var(--line);
+  background:#fff;color:var(--muted);font-size:17px;line-height:1;cursor:pointer}
+.mat-del:hover{background:#FBEDE8;color:#A5341A;border-color:#EBC6BA}
+.own-add{display:flex;gap:8px;flex-wrap:wrap}
+.own-add input{flex:1 1 190px;min-width:0;font:inherit;font-size:13.5px;padding:9px 11px;
+  border:1px solid var(--line);border-radius:7px;background:#fff}
+.own-tip{font-size:12px;color:var(--muted);margin:9px 0 0}
+.note-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.note-cell label{display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;
+  color:var(--muted);font-weight:700;margin-bottom:5px}
+.note-cell label .muted{text-transform:none;letter-spacing:0;font-weight:400}
+.note-cell textarea{width:100%;font:inherit;font-size:13.5px;line-height:1.5;padding:10px 12px;
+  border:1px solid var(--line);border-radius:8px;background:#fff;resize:vertical}
+.note-cell textarea:focus{outline:2px solid var(--blue-l);outline-offset:-1px}
+.note-off{font-size:13px;color:var(--muted);background:#F1F5F9;border-radius:8px;padding:12px 14px}
+.lesson-marks{flex:0 0 auto;display:flex;gap:3px;margin-top:5px}
+.mk{font-size:12px;line-height:1;padding:3px 5px;border-radius:4px}
+.mk-note{background:#FFF1DC;color:#96560E}
+.mk-mat{background:#E7F0FA;color:var(--blue)}
+@media(max-width:700px){ .note-grid{grid-template-columns:1fr} }
+
 /* Kurzmeldung nach Sichern/Laden */
 #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);
   background:var(--blue-d);color:#fff;padding:12px 20px;border-radius:9px;font-size:13.5px;
@@ -336,6 +393,12 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
   body.print-modal .fp-overlay{position:static;display:block;background:#fff;padding:0;overflow:visible}
   body.print-modal .fp-dialog{box-shadow:none;border-radius:0;max-width:none;width:auto}
   body.print-modal .fp-actions,body.print-modal .fp-close{display:none!important}
+  /* Eingabefelder im Ausdruck durch reine Textdarstellung ersetzen */
+  body.print-modal .own-add,body.print-modal .own-tip,body.print-modal .mat-del{display:none!important}
+  body.print-modal .own-box{background:#fff;border:1px solid #ccc}
+  body.print-modal .note-cell textarea{border:1px solid #ccc;background:#fff;min-height:60px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body.print-modal .classbar{display:none!important}
   body.print-modal .fp-head{background:#1F4E79!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   body.print-modal table.fp-raster th{background:#1F4E79!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   body.print-modal .fp-dialog{page-break-inside:auto}
@@ -364,6 +427,12 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
       <div class="kpi"><b>1</b><span>Klassenarbeit</span></div>
       <div class="kpi"><b>105/105</b><span>Feinplanungen</span></div>
       <div class="kpi"><b id="kpi-progress">0 %</b><span>abgeschlossen</span></div>
+    </div>
+    <div class="classbar">
+      <label for="classSel">Lerngruppe</label>
+      <select id="classSel"></select>
+      <button class="btn btn-light" id="manageBtn">Klassen verwalten</button>
+      <span class="cls-hint" id="classHint"></span>
     </div>
   </div>
 </header>
@@ -1656,6 +1725,30 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
   Feinplanungen: 105 von 105 Stunden ausgearbeitet.
 </footer>
 
+<div class="fp-overlay" id="clsModal" role="dialog" aria-modal="true" aria-labelledby="clsTitle">
+  <div class="fp-dialog" style="max-width:640px">
+    <div class="fp-head">
+      <button class="fp-close" id="clsClose" aria-label="Schließen">&times;</button>
+      <div class="fp-crumb">Organisation</div>
+      <h2 id="clsTitle">Lerngruppen verwalten</h2>
+      <div class="fp-unit">Jede Lerngruppe hat einen eigenen Fortschritt und eigene Notizen.</div>
+    </div>
+    <div class="fp-body">
+      <h3>Neue Lerngruppe</h3>
+      <div class="cls-add">
+        <input type="text" id="clsName" placeholder="Name, z. B. 9a" maxlength="40">
+        <select id="clsYear"><option value="9">Jahrgang 9</option><option value="10">Jahrgang 10</option></select>
+        <button class="btn btn-primary" id="clsAdd">Anlegen</button>
+      </div>
+      <h3>Vorhandene Lerngruppen</h3>
+      <div id="clsList"></div>
+    </div>
+    <div class="fp-actions">
+      <button class="btn" id="clsDone">Fertig</button>
+    </div>
+  </div>
+</div>
+
 <div class="fp-overlay" id="fpModal" role="dialog" aria-modal="true" aria-labelledby="fpTitle">
   <div class="fp-dialog">
     <div class="fp-head">
@@ -1678,15 +1771,77 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
 
 <script>
 (function(){
-  var STORE='wipo-2026-27-progress';
-  var state={};
-  function load(){try{state=JSON.parse(localStorage.getItem(STORE)||'{}')||{}}catch(e){state={}}}
-  function save(){try{localStorage.setItem(STORE,JSON.stringify(state))}catch(e){}}
+  // ============ Datenhaltung ============
+  // D = { version, classes:[{id,name,jahrgang}], activeId,
+  //       progress:{classId:{lessonKey:1}}, notesGeneral:{lessonKey:text},
+  //       notesClass:{classId:{lessonKey:text}}, materials:{lessonKey:[{id,title,url}]} }
+  var STORE='wipo-2026-27-data';
+  var OLDSTORE='wipo-2026-27-progress';
+  var HJ_OF={k9_1:9,k9_2:9,k10_1:10,k10_2:10};
+  var HJ_NAME={k9_1:'Klasse 9 · 1. Halbjahr',k9_2:'Klasse 9 · 2. Halbjahr',
+               k10_1:'Klasse 10 · 1. Halbjahr',k10_2:'Klasse 10 · 2. Halbjahr'};
+  var D=null;
+
+  function fresh(){
+    return {version:2,classes:[],activeId:null,progress:{},
+            notesGeneral:{},notesClass:{},materials:{}};
+  }
+  function uid(){ return 'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+
+  function load(){
+    try{ D=JSON.parse(localStorage.getItem(STORE)||'null'); }catch(e){ D=null; }
+    if(!D || D.version!==2){ D=fresh(); migrate(); }
+    // Sicherheitsnetz gegen unvollständige Objekte
+    ['progress','notesGeneral','notesClass','materials'].forEach(function(k){ if(!D[k]) D[k]={}; });
+    if(!Array.isArray(D.classes)) D.classes=[];
+    if(D.activeId && !byId(D.activeId)) D.activeId=null;
+    if(!D.activeId && D.classes.length) D.activeId=D.classes[0].id;
+  }
+  function save(){ try{ localStorage.setItem(STORE,JSON.stringify(D)); }catch(e){} }
+
+  // Vorhandenen Fortschritt der ersten Fassung verlustfrei übernehmen
+  function migrate(){
+    var old=null;
+    try{ old=JSON.parse(localStorage.getItem(OLDSTORE)||'null'); }catch(e){}
+    if(!old || typeof old!=='object') return;
+    var keys=Object.keys(old); if(!keys.length) return;
+    var years={};
+    keys.forEach(function(k){ var hj=k.split('|')[0]; if(HJ_OF[hj]) years[HJ_OF[hj]]=true; });
+    Object.keys(years).forEach(function(y){
+      var c={id:uid(),name:'Klasse '+y+' (übernommen)',jahrgang:+y};
+      D.classes.push(c); D.progress[c.id]={};
+      keys.forEach(function(k){ if(HJ_OF[k.split('|')[0]]===+y) D.progress[c.id][k]=1; });
+    });
+    if(D.classes.length){ D.activeId=D.classes[0].id; save(); }
+  }
+
+  function byId(id){ for(var i=0;i<D.classes.length;i++) if(D.classes[i].id===id) return D.classes[i]; return null; }
+  function activeClass(){ return byId(D.activeId); }
+  function prog(){ // Fortschrittsobjekt der aktiven Klasse
+    if(!D.activeId) return null;
+    if(!D.progress[D.activeId]) D.progress[D.activeId]={};
+    return D.progress[D.activeId];
+  }
+  function classNote(key){
+    if(!D.activeId) return '';
+    return (D.notesClass[D.activeId]||{})[key]||'';
+  }
+  function setClassNote(key,val){
+    if(!D.activeId) return;
+    if(!D.notesClass[D.activeId]) D.notesClass[D.activeId]={};
+    if(val) D.notesClass[D.activeId][key]=val; else delete D.notesClass[D.activeId][key];
+  }
+
   load();
 
-  // restore checkboxes
-  var boxes=document.querySelectorAll('.chk input[type=checkbox]');
-  boxes.forEach(function(b){ if(state[b.dataset.key]) b.checked=true; });
+  // Kästchen auf den Stand der aktiven Klasse bringen
+  function syncBoxes(){
+    var p=prog();
+    document.querySelectorAll('.chk input[type=checkbox]').forEach(function(b){
+      b.checked = !!(p && p[b.dataset.key]);
+      b.disabled = !p;
+    });
+  }
 
   function updateAll(){
     var totalAll=0, doneAll=0;
@@ -1709,11 +1864,55 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     });
     var kpi=document.getElementById('kpi-progress');
     if(kpi) kpi.textContent=(totalAll?Math.round(doneAll/totalAll*100):0)+' %';
+    renderClassBar();
+    markNoteBadges();
+  }
+
+  // Kopfzeile: Klassenauswahl aufbauen
+  function renderClassBar(){
+    var sel=document.getElementById('classSel');
+    var c=activeClass();
+    if(sel){
+      var cur=D.activeId||'';
+      sel.innerHTML = D.classes.length
+        ? D.classes.map(function(k){
+            return '<option value="'+k.id+'"'+(k.id===cur?' selected':'')+'>'+esc(k.name)+' · Jg. '+k.jahrgang+'</option>';
+          }).join('')
+        : '<option value="">– keine Klasse angelegt –</option>';
+      sel.disabled = !D.classes.length;
+    }
+    var hint=document.getElementById('classHint');
+    if(hint){
+      hint.textContent = c ? ('Fortschritt und Notizen gelten für ' + c.name)
+                           : 'Ohne Klasse lassen sich Stunden nicht abhaken.';
+      hint.className = c ? 'cls-hint' : 'cls-hint warn';
+    }
+    // Halbjahre, die nicht zum Jahrgang der Klasse gehören, dezent kennzeichnen
+    document.querySelectorAll('.tab[data-target]').forEach(function(t){
+      var y=HJ_OF[t.dataset.target];
+      t.classList.toggle('off-year', !!(c && y && y!==c.jahrgang));
+    });
+  }
+
+  // Kleine Marker an Stunden mit Notiz oder eigenem Material
+  function markNoteBadges(){
+    document.querySelectorAll('.lesson').forEach(function(li){
+      var b=li.querySelector('.fp-btn'); if(!b) return;
+      var k=b.dataset.fp;
+      var hasNote = !!(D.notesGeneral[k]) || !!classNote(k);
+      var hasMat  = !!(D.materials[k] && D.materials[k].length);
+      var m=li.querySelector('.lesson-marks');
+      if(!m){ m=document.createElement('span'); m.className='lesson-marks'; li.insertBefore(m,b); }
+      m.innerHTML = (hasNote?'<span class="mk mk-note" title="Notiz vorhanden">✎</span>':'')
+                  + (hasMat ?'<span class="mk mk-mat" title="Eigenes Material verknüpft">▤</span>':'');
+    });
   }
 
   document.addEventListener('change',function(e){
     if(e.target.matches('.chk input[type=checkbox]')){
-      if(e.target.checked) state[e.target.dataset.key]=1; else delete state[e.target.dataset.key];
+      var p=prog();
+      if(!p){ e.target.checked=false; toast('Bitte zuerst eine Klasse anlegen oder auswählen.'); return; }
+      if(e.target.checked) p[e.target.dataset.key]=1; else delete p[e.target.dataset.key];
       save(); updateAll();
     }
   });
@@ -1763,7 +1962,44 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
       '<h3>Materialvorschläge</h3><ul class="fp-list">'+(mats||'<li>–</li>')+'</ul>';
     if(d.ha) html+='<h3>Hausaufgabe</h3><div class="fp-ha">'+esc(d.ha)+'</div>';
     if(d.hinweis) html+='<h3>Hinweis für die Lehrkraft</h3><div class="fp-note">'+esc(d.hinweis)+'</div>';
+
+    // ---- Eigene Materialverweise ----
+    var mats=D.materials[key]||[];
+    html+='<h3>Eigene Materialien und Quellen</h3>'+
+      '<div class="own-box">'+
+      '<ul class="own-mats" id="ownMats">'+
+        (mats.length ? mats.map(function(m){
+           return '<li><a href="'+esc(m.url)+'" target="_blank" rel="noopener">'+esc(m.title)+'</a>'+
+                  '<button class="mat-del" data-mid="'+esc(m.id)+'" title="Entfernen">&times;</button></li>';
+         }).join('')
+        : '<li class="muted">Noch nichts verknüpft.</li>')+
+      '</ul>'+
+      '<div class="own-add">'+
+        '<input type="text" id="matTitle" placeholder="Bezeichnung, z. B. Arbeitsblatt M3" maxlength="120">'+
+        '<input type="url" id="matUrl" placeholder="Link (iCloud, Nextcloud, Schulserver, Website)">'+
+        '<button class="btn btn-primary" id="matAdd">Hinzufügen</button>'+
+      '</div>'+
+      '<p class="own-tip">Datei zuerst in iCloud oder auf dem Schulserver ablegen, dort einen Freigabelink erzeugen und diesen hier einfügen. So bleibt sie auf allen Geräten verfügbar.</p>'+
+      '</div>';
+
+    // ---- Notizen ----
+    var c=activeClass();
+    html+='<h3>Meine Notizen</h3>'+
+      '<div class="note-grid">'+
+        '<div class="note-cell">'+
+          '<label for="noteGen">Allgemein <span class="muted">(gilt für alle Lerngruppen)</span></label>'+
+          '<textarea id="noteGen" rows="4" placeholder="Was zur Stunde grundsätzlich zu beachten ist …">'+esc(D.notesGeneral[key]||'')+'</textarea>'+
+        '</div>'+
+        '<div class="note-cell">'+
+          '<label for="noteCls">'+(c?('Nur für '+esc(c.name)):'Klassenbezogen')+'</label>'+
+          (c ? '<textarea id="noteCls" rows="4" placeholder="Wie lief die Stunde in dieser Gruppe …">'+esc(classNote(key))+'</textarea>'
+             : '<div class="note-off">Zum Schreiben einer klassenbezogenen Notiz zuerst oben eine Lerngruppe auswählen.</div>')+
+        '</div>'+
+      '</div>'+
+      '<p class="own-tip">Änderungen werden automatisch gespeichert.</p>';
+
     document.getElementById('fpBody').innerHTML=html;
+    wireLessonExtras(key);
 
     document.getElementById('fpModal').classList.add('open');
     document.body.style.overflow='hidden';
@@ -1774,7 +2010,129 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     document.getElementById('fpModal').classList.remove('open');
     document.body.style.overflow='';
     currentFP=null;
+    markNoteBadges();
   }
+
+  // ---- Notizen und eigene Materialien im Stundendetail verdrahten ----
+  function wireLessonExtras(key){
+    var t;
+    function autosave(fn){ clearTimeout(t); t=setTimeout(function(){ fn(); save(); },400); }
+
+    var ng=document.getElementById('noteGen');
+    if(ng) ng.addEventListener('input',function(){
+      autosave(function(){
+        var v=ng.value.trim();
+        if(v) D.notesGeneral[key]=v; else delete D.notesGeneral[key];
+      });
+    });
+
+    var nc=document.getElementById('noteCls');
+    if(nc) nc.addEventListener('input',function(){
+      autosave(function(){ setClassNote(key, nc.value.trim()); });
+    });
+
+    var add=document.getElementById('matAdd');
+    if(add) add.addEventListener('click',function(){
+      var ti=document.getElementById('matTitle'), ur=document.getElementById('matUrl');
+      var title=ti.value.trim(), url=ur.value.trim();
+      if(!title && !url){ toast('Bitte Bezeichnung und Link eingeben.'); return; }
+      if(!url){ toast('Bitte einen Link angeben.'); ur.focus(); return; }
+      if(!/^https?:\/\//i.test(url)) url='https://'+url;
+      if(!title) title=url.replace(/^https?:\/\//i,'').slice(0,60);
+      if(!D.materials[key]) D.materials[key]=[];
+      D.materials[key].push({id:'m'+Date.now().toString(36),title:title,url:url});
+      save(); renderFP(key); toast('Material verknüpft.');
+    });
+
+    document.querySelectorAll('.mat-del').forEach(function(b){
+      b.addEventListener('click',function(){
+        var list=D.materials[key]||[];
+        D.materials[key]=list.filter(function(m){ return m.id!==b.dataset.mid; });
+        if(!D.materials[key].length) delete D.materials[key];
+        save(); renderFP(key);
+      });
+    });
+  }
+
+  // ---- Klassenverwaltung ----
+  function renderClassList(){
+    var box=document.getElementById('clsList');
+    if(!D.classes.length){ box.innerHTML='<p class="muted">Noch keine Lerngruppe angelegt.</p>'; return; }
+    box.innerHTML=D.classes.map(function(k){
+      var p=D.progress[k.id]||{}, n=Object.keys(p).length;
+      var notes=Object.keys(D.notesClass[k.id]||{}).length;
+      return '<div class="cls-row">'+
+        '<div class="cls-info"><strong>'+esc(k.name)+'</strong>'+
+          '<span>Jahrgang '+k.jahrgang+' · '+n+' Stunden abgehakt · '+notes+' Notizen</span></div>'+
+        '<button class="btn btn-mini" data-ren="'+k.id+'">Umbenennen</button>'+
+        '<button class="btn btn-mini btn-danger" data-del="'+k.id+'">Löschen</button>'+
+      '</div>';
+    }).join('');
+
+    box.querySelectorAll('[data-ren]').forEach(function(b){
+      b.addEventListener('click',function(){
+        var k=byId(b.dataset.ren); if(!k) return;
+        var v=prompt('Neuer Name für die Lerngruppe:',k.name);
+        if(v===null) return;
+        v=v.trim(); if(!v) return;
+        k.name=v.slice(0,40); save(); renderClassList(); renderClassBar();
+      });
+    });
+    box.querySelectorAll('[data-del]').forEach(function(b){
+      b.addEventListener('click',function(){
+        var k=byId(b.dataset.del); if(!k) return;
+        var n=Object.keys(D.progress[k.id]||{}).length;
+        var notes=Object.keys(D.notesClass[k.id]||{}).length;
+        if(!confirm('„'+k.name+'" wirklich löschen?\n\n'+n+' abgehakte Stunden und '+notes+' klassenbezogene Notizen gehen dabei verloren.\nAllgemeine Notizen und verknüpfte Materialien bleiben erhalten.')) return;
+        D.classes=D.classes.filter(function(x){ return x.id!==k.id; });
+        delete D.progress[k.id]; delete D.notesClass[k.id];
+        if(D.activeId===k.id) D.activeId = D.classes.length?D.classes[0].id:null;
+        save(); renderClassList(); renderClassBar(); syncBoxes(); updateAll();
+      });
+    });
+  }
+
+  function openClasses(){
+    renderClassList();
+    document.getElementById('clsModal').classList.add('open');
+    document.body.style.overflow='hidden';
+    setTimeout(function(){ var f=document.getElementById('clsName'); if(f) f.focus(); },80);
+  }
+  function closeClasses(){
+    document.getElementById('clsModal').classList.remove('open');
+    document.body.style.overflow='';
+  }
+
+  document.getElementById('manageBtn').addEventListener('click',openClasses);
+  document.getElementById('clsClose').addEventListener('click',closeClasses);
+  document.getElementById('clsDone').addEventListener('click',closeClasses);
+  document.getElementById('clsModal').addEventListener('click',function(e){ if(e.target===this) closeClasses(); });
+
+  document.getElementById('clsAdd').addEventListener('click',function(){
+    var ni=document.getElementById('clsName'), yi=document.getElementById('clsYear');
+    var name=ni.value.trim();
+    if(!name){ toast('Bitte einen Namen eingeben.'); ni.focus(); return; }
+    var k={id:uid(),name:name.slice(0,40),jahrgang:+yi.value};
+    D.classes.push(k); D.progress[k.id]={};
+    if(!D.activeId) D.activeId=k.id;
+    save(); ni.value='';
+    renderClassList(); renderClassBar(); syncBoxes(); updateAll();
+    toast('„'+k.name+'" angelegt.');
+  });
+  document.getElementById('clsName').addEventListener('keydown',function(e){
+    if(e.key==='Enter') document.getElementById('clsAdd').click();
+  });
+
+  document.getElementById('classSel').addEventListener('change',function(){
+    D.activeId=this.value||null; save();
+    syncBoxes(); updateAll();
+    var c=activeClass();
+    if(c){
+      var target = c.jahrgang===9 ? 'k9_1' : 'k10_1';
+      var act=document.querySelector('.tab.active');
+      if(act && HJ_OF[act.dataset.target] && HJ_OF[act.dataset.target]!==c.jahrgang) show(target);
+    }
+  });
 
   function fpMarkdown(key){
     var d=FPDATA.fp[key], m=FPDATA.meta[key];
@@ -1805,6 +2163,18 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     (d.material||[]).forEach(function(x){ L.push('- '+x.t+(x.u?' – '+x.u:'')); });
     if(d.ha){ L.push(''); L.push('## Hausaufgabe'); L.push(''); L.push(d.ha); }
     if(d.hinweis){ L.push(''); L.push('## Hinweis für die Lehrkraft'); L.push(''); L.push(d.hinweis); }
+
+    var om=D.materials[key]||[];
+    if(om.length){
+      L.push(''); L.push('## Eigene Materialien und Quellen'); L.push('');
+      om.forEach(function(m){ L.push('- '+m.title+' – '+m.url); });
+    }
+    var ng=D.notesGeneral[key]||'', nc=classNote(key), ac=activeClass();
+    if(ng || nc){
+      L.push(''); L.push('## Meine Notizen');
+      if(ng){ L.push(''); L.push('**Allgemein:** '+ng); }
+      if(nc){ L.push(''); L.push('**'+(ac?ac.name:'Klasse')+':** '+nc); }
+    }
     L.push('');
     L.push('---');
     L.push('Wirtschaft/Politik · Schuljahr 2026/27 · erstellt aus der Grobplanung Klasse 9 & 10');
@@ -1920,10 +2290,11 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     window.print();
   });
   document.getElementById('resetBtn').addEventListener('click',function(){
-    if(!confirm('Alle Fortschrittsmarkierungen zurücksetzen?')) return;
-    state={}; save();
-    document.querySelectorAll('.chk input').forEach(function(b){b.checked=false});
-    updateAll();
+    var c=activeClass();
+    if(!c){ toast('Keine Klasse ausgewählt.'); return; }
+    if(!confirm('Alle Häkchen von „'+c.name+'" zurücksetzen?\n\nNotizen und verknüpfte Materialien bleiben erhalten.')) return;
+    D.progress[c.id]={}; save(); syncBoxes(); updateAll();
+    toast('Fortschritt von „'+c.name+'" zurückgesetzt.');
   });
 
   // ---------- Fortschritt sichern / laden ----------
@@ -1932,16 +2303,21 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());
   }
   document.getElementById('exportBtn').addEventListener('click',function(){
-    var n=Object.keys(state).length;
-    var payload={ app:'WiPo-Unterrichtsplanung', version:1, schuljahr:'2026/27',
-                  gesichert:new Date().toISOString(), anzahl:n, fortschritt:state };
+    var ticks=0; Object.keys(D.progress).forEach(function(id){ ticks+=Object.keys(D.progress[id]||{}).length; });
+    var notes=Object.keys(D.notesGeneral).length;
+    Object.keys(D.notesClass).forEach(function(id){ notes+=Object.keys(D.notesClass[id]||{}).length; });
+    var mats=0; Object.keys(D.materials).forEach(function(k){ mats+=(D.materials[k]||[]).length; });
+    var payload={ app:'WiPo-Unterrichtsplanung', version:2, schuljahr:'2026/27',
+                  gesichert:new Date().toISOString(),
+                  uebersicht:{klassen:D.classes.length,haekchen:ticks,notizen:notes,materialien:mats},
+                  daten:D };
     var blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
     var a=document.createElement('a');
     a.href=URL.createObjectURL(blob);
-    a.download='WiPo-Fortschritt_'+stamp()+'.json';
+    a.download='WiPo-Sicherung_'+stamp()+'.json';
     document.body.appendChild(a); a.click();
     setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },1000);
-    toast(n+' markierte Stunden gesichert.');
+    toast('Gesichert: '+D.classes.length+' Klassen, '+ticks+' Häkchen, '+notes+' Notizen, '+mats+' Materialien.');
   });
 
   var impFile=document.getElementById('importFile');
@@ -1954,25 +2330,64 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
       var data;
       try{ data=JSON.parse(rd.result); }
       catch(e){ alert('Die Datei konnte nicht gelesen werden. Bitte eine zuvor gesicherte Fortschrittsdatei wählen.'); impFile.value=''; return; }
-      var incoming=data && data.fortschritt;
-      if(!incoming || typeof incoming!=='object'){
-        alert('In dieser Datei ist kein Fortschritt enthalten.'); impFile.value=''; return;
+      var neu=null;
+      if(data && data.daten && Array.isArray(data.daten.classes)){
+        neu=data.daten;                       // Sicherung der aktuellen Fassung
+      }else if(data && data.fortschritt && typeof data.fortschritt==='object'){
+        // Sicherung der ersten Fassung: in Klassen je Jahrgang überführen
+        neu=fresh();
+        var years={};
+        Object.keys(data.fortschritt).forEach(function(k){
+          var y=HJ_OF[k.split('|')[0]]; if(y) years[y]=true;
+        });
+        Object.keys(years).forEach(function(y){
+          var c={id:uid(),name:'Klasse '+y+' (aus Sicherung)',jahrgang:+y};
+          neu.classes.push(c); neu.progress[c.id]={};
+          Object.keys(data.fortschritt).forEach(function(k){
+            if(HJ_OF[k.split('|')[0]]===+y) neu.progress[c.id][k]=1;
+          });
+        });
+        if(neu.classes.length) neu.activeId=neu.classes[0].id;
       }
-      var keys=Object.keys(incoming), have=Object.keys(state).length;
-      var msg=keys.length+' markierte Stunden gefunden'+(data.gesichert?' (gesichert am '+String(data.gesichert).slice(0,10)+')':'')+'.\n\n';
-      msg+= have ? 'OK = mit Ihrem bisherigen Stand zusammenführen\nAbbrechen = bisherigen Stand ersetzen'
-                 : 'Jetzt übernehmen?';
+      if(!neu){ alert('In dieser Datei sind keine verwertbaren Daten enthalten.'); impFile.value=''; return; }
+
+      var nTicks=0; Object.keys(neu.progress||{}).forEach(function(id){ nTicks+=Object.keys(neu.progress[id]||{}).length; });
+      var nNotes=Object.keys(neu.notesGeneral||{}).length;
+      Object.keys(neu.notesClass||{}).forEach(function(id){ nNotes+=Object.keys(neu.notesClass[id]||{}).length; });
+      var nMats=0; Object.keys(neu.materials||{}).forEach(function(k){ nMats+=(neu.materials[k]||[]).length; });
+
+      var haveAny = D.classes.length || Object.keys(D.notesGeneral).length || Object.keys(D.materials).length;
+      var msg='Gefunden: '+(neu.classes||[]).length+' Klassen, '+nTicks+' Häkchen, '+nNotes+' Notizen, '+nMats+' Materialien'+
+              (data.gesichert?' (gesichert am '+String(data.gesichert).slice(0,10)+')':'')+'.\n\n';
+      msg+= haveAny ? 'OK = zu Ihrem bisherigen Stand hinzufügen\nAbbrechen = bisherigen Stand ersetzen'
+                    : 'Jetzt übernehmen?';
       var merge=confirm(msg);
-      if(!merge && have && !confirm('Ihren bisherigen Stand ('+have+' Stunden) wirklich ersetzen?')){ impFile.value=''; return; }
-      if(!merge) state={};
-      var known=0;
-      keys.forEach(function(k){
-        if(document.querySelector('.chk input[data-key="'+k.replace(/"/g,'')+'"]')){ state[k]=1; known++; }
-      });
-      save();
-      document.querySelectorAll('.chk input').forEach(function(b){ b.checked=!!state[b.dataset.key]; });
-      updateAll();
-      toast(known+' Stunden übernommen'+(known<keys.length?', '+(keys.length-known)+' nicht zuordenbar':'')+'.');
+      if(!merge && haveAny && !confirm('Ihren bisherigen Stand wirklich vollständig ersetzen?')){ impFile.value=''; return; }
+
+      if(!merge){
+        D=neu;
+      }else{
+        (neu.classes||[]).forEach(function(c){
+          var srcId=c.id, id=c.id;
+          if(byId(id)){ id=uid(); c={id:id,name:c.name+' (importiert)',jahrgang:c.jahrgang}; }
+          D.classes.push(c);
+          D.progress[id]=(neu.progress||{})[srcId]||{};
+          if((neu.notesClass||{})[srcId]) D.notesClass[id]=neu.notesClass[srcId];
+        });
+        Object.keys(neu.notesGeneral||{}).forEach(function(k){
+          if(!D.notesGeneral[k]) D.notesGeneral[k]=neu.notesGeneral[k];
+        });
+        Object.keys(neu.materials||{}).forEach(function(k){
+          if(!D.materials[k]) D.materials[k]=[];
+          (neu.materials[k]||[]).forEach(function(m){
+            if(!D.materials[k].some(function(x){ return x.url===m.url; })) D.materials[k].push(m);
+          });
+        });
+        if(!D.activeId && D.classes.length) D.activeId=D.classes[0].id;
+      }
+      save(); load();
+      renderClassBar(); syncBoxes(); updateAll();
+      toast('Sicherung übernommen.');
       impFile.value='';
     };
     rd.readAsText(f);
@@ -1985,8 +2400,15 @@ header.top{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24
     clearTimeout(toast._t); toast._t=setTimeout(function(){ t.className=''; },3200);
   }
 
-  show('k9_1');
+  // Start: Ansicht auf die aktive Klasse ausrichten
+  var startC=activeClass();
+  show(startC ? (startC.jahrgang===9?'k9_1':'k10_1') : 'k9_1');
+  renderClassBar();
+  syncBoxes();
   updateAll();
+  if(!D.classes.length){
+    setTimeout(function(){ toast('Tipp: Legen Sie oben unter „Klassen verwalten" Ihre Lerngruppen an.'); },900);
+  }
 })();
 
 // ---------- Service Worker: Offlinebetrieb ----------
